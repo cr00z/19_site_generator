@@ -1,6 +1,6 @@
 # Encyclopedia
 
-[TODO. There will be project description]
+https://cr00z.github.io/19_site_generator/www/index.html
 
 # Project Goals
 

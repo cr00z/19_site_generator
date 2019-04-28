@@ -6,7 +6,7 @@
         {% for topic in content.values() %}
           <h4>{{ topic.title }}</h4>
             <ul>
-            {% for article in topic.articles %}
+            {% for article in topic.articles|sort(attribute='title') %}
               <li><a href="{{ article.source }}">{{ article.title }}</a></li>
             {% endfor %}
             </ul>

@@ -3,6 +3,7 @@ import markdown
 from jinja2 import Environment, FileSystemLoader
 import os
 import html
+from livereload import Server
 
 
 HTML_FOLDER = 'www'
@@ -67,7 +68,7 @@ def fix_some_translation_bugs(input_html):
     return out_html.replace('</code></pre>', '</pre></div></div>')
 
 
-if __name__ == '__main__':
+def make_site():
     jinja2_env = Environment(loader=FileSystemLoader('templates'))
     config = load_configuration('config.json')
     save_page(
@@ -77,7 +78,6 @@ if __name__ == '__main__':
     for article in config['articles']:
         md_content = load_markdown(os.path.join('articles', article['source']))
         article_html = fix_some_translation_bugs(markdown.markdown(md_content))
-        md_article_file = os.path.basename(article['source'])
         save_page(
             os.path.join(
                 HTML_FOLDER,
@@ -86,3 +86,9 @@ if __name__ == '__main__':
             ),
             create_article(jinja2_env, html.escape(article['title']), article_html)
         )
+
+
+if __name__ == '__main__':
+    server = Server()
+    server.watch('config.json', make_site)
+    server.serve(root='www/')
