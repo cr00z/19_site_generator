@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>Энциклопедия</h1>
+        <p>Знания, необходимые для старта. Коротко. Ясно. В сжатом виде.</p>
+        <hr>
+        {% for topic in content.values() %}
+          <h4>{{ topic.title }}</h4>
+            <ul>
+            {% for article in topic.articles %}
+              <li><a href="{{ article.source }}">{{ article.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endfor %}
+{% endblock %}
