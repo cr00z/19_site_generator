@@ -5,7 +5,7 @@ import os
 import html
 
 
-HTML_FOLDER = 'www'
+HTML_FOLDER = 'docs'
 ARTS_FOLDER = 'articles'
 
 
