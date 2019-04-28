@@ -20,7 +20,8 @@
       }
 
       main > .container {
-        padding: 60px 15px 0;
+        padding: 80px 15px 0;
+        width:80%;
       }
 
       .footer {
@@ -32,8 +33,16 @@
         padding-left: 15px;
       }
 
-      code {
-        font-size: 80%;
+      body {
+        font-size: 120%;
+        font:
+      }
+
+      blockquote{
+        padding:10px 20px;
+        margin:0 0 20px;
+        font-size:17.5px;
+        border-left:5px solid #eee
       }
     </style>
     <title>Энциклопедия</title>
@@ -50,7 +59,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/19_site_generator/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/devmanorg/">Github</a>
@@ -70,22 +79,22 @@
         <h2>Какие бывают</h2>
 <h3>Обычные комментарии</h3>
 <p>Комментарии – способ прокомментировать код на ходу, на той же строке. </p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 price = Column(BigInteger)  # рубли * 100
-</code></pre>
+</pre></div></div>
 <h3>Докстринги</h3>
 <p>Докстринг – строковая переменная, которая идёт сразу за объявлением функции, класса, метода или модуля.
 Она нужна для документирования всей функции: описания входящих параметров, результата, логики, крайних случаев.
 Заключается в тройные двойные кавычки. Вот так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 def tensorsolve(a, b, axes=None):
-    &amp;quot;&amp;quot;&amp;quot;
+    """
     Solve the tensor equation ``a x = b`` for x.
     It is assumed that all indices of `x` are summed over in the product,
     together with the rightmost indices of `a`, as is done in, for example,
     ``tensordot(a, x, axes=len(b.shape))``.
-    &amp;quot;&amp;quot;&amp;quot;
-</code></pre>
+    """
+</pre></div></div>
 <p>В серьёзных проектах из них часто генерируется документация, поэтому они могут быть большими, по несколько экранов.
 Это касается проектов, у которых есть документация для разработчиков: Django, numpy, sqlalchemy.</p>
 <p>Если проект не подразумевает, что им будут пользоваться другие разработчики, такого быть не должно.
@@ -97,35 +106,35 @@ def tensorsolve(a, b, axes=None):
 <p>Самая частая ошибка, связанная с комментариями: дублирование информации.
 В таком случае комментарий не несёт дополнительной информации, а просто переводит соседний код
 с Питона на русский/английский. Пример:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 # загружаем данные из файла data.json
-with open(&amp;#x27;users.json&amp;#x27;, &amp;#x27;r&amp;#x27;) as handler:
+with open('users.json', 'r') as handler:
     data = json.load(handler)
-</code></pre>
+</pre></div></div>
 <p>Вот как можно исправить:</p>
-<pre><code>:::python
-with open(&amp;#x27;users.json&amp;#x27;, &amp;#x27;r&amp;#x27;) as handler:
+<div class="card"><div class="card-body"><pre>
+with open('users.json', 'r') as handler:
     data = json.load(handler)
-</code></pre>
+</pre></div></div>
 <p>А так – ещё лучше:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 data = load_all_users_from_file()
-</code></pre>
+</pre></div></div>
 <h3>Не сопровождать комментарии</h3>
 <p>Другая частая ошибка: не менять комментарии при изменении кода. В примере выше мы загружали данные из файла. 
 Через месяц взялись за голову и поселили данные в базе данных. Код стал таким:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 # загружаем данные из файла data.json
 data = db_session.query(User).all()
-</code></pre>
+</pre></div></div>
 <p>Данные из файла? WAT?</p>
 <h3>Думать, что все поймут</h3>
 <p>Когда программист пишет кусок кода, он глубоко в него погружён: держит в голове все детали, связи и особые случаи.
 В таком состоянии всё поведение кажется понятным, поэтому разработчик может оставить комментарий самому себе.
 Проблема в том, что когда он переключится на другую задачу и забудет про детали, комментарий может взорвать мозг:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 inv(strain_tensor) - rigidity.T  # правый случай
-</code></pre>
+</pre></div></div>
 <p>Правый, правда? Ну, теперь всё понятно.</p>
 <h3>Шутить</h3>
 <p>Шутки к неидеальному коду смотрятся неуместно. Представь, как чувствует себя разработчик, копающийся в чужом

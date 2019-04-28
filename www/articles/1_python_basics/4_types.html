@@ -20,7 +20,8 @@
       }
 
       main > .container {
-        padding: 60px 15px 0;
+        padding: 80px 15px 0;
+        width:80%;
       }
 
       .footer {
@@ -32,8 +33,16 @@
         padding-left: 15px;
       }
 
-      code {
-        font-size: 80%;
+      body {
+        font-size: 120%;
+        font:
+      }
+
+      blockquote{
+        padding:10px 20px;
+        margin:0 0 20px;
+        font-size:17.5px;
+        border-left:5px solid #eee
       }
     </style>
     <title>Энциклопедия</title>
@@ -50,7 +59,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/19_site_generator/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/devmanorg/">Github</a>
@@ -86,64 +95,64 @@
 <p>Это значит, что всё сделано очень удобно, но чтобы этим всем удобно пользоваться, надо знать, что такое Юникод, кодировки,
 байты, вот это всё. Об этом можно узнать, например, из <a href="https://www.youtube.com/watch?v=sgHbC6udIqc">классного доклада про Юникод в Питоне</a>.</p>
 <p>Ещё строки можно форматировать, причём несколькими способами. Вот один из них:</p>
-<pre><code>:::python
-name = &amp;#x27;Пётр&amp;#x27;
+<div class="card"><div class="card-body"><pre>
+name = 'Пётр'
 height = 1.865
-print(&amp;#x27;Привет, %s! Твой рост – %.2f м.&amp;#x27; % (name, height))
+print('Привет, %s! Твой рост – %.2f м.' % (name, height))
 # Привет, Пётр! Твой рост – 1.86 м.
-</code></pre>
-<p>Заметь, что <code>%s</code> значит &quot;вывести строку как есть&quot;, а <code>%.2f</code> значит &quot;вывести вещественное число 
-с точностью до третьего знака&quot;. На самом деле, есть целый подъязык этого форматирования. Почитай 
+</pre></div></div>
+<p>Заметь, что <code>%s</code> значит "вывести строку как есть", а <code>%.2f</code> значит "вывести вещественное число 
+с точностью до третьего знака". На самом деле, есть целый подъязык этого форматирования. Почитай 
 <a href="https://docs.python.org/3.1/library/string.html#format-specification-mini-language">про него в документации</a>
 и <a href="https://pyformat.info/">более подробную статью</a>.</p>
 <p>И главное: никогда не используй сложение строк для форматирования. Это плохо читается, долго работает и занимает
 много места.</p>
 <h3>Списки</h3>
-<p>Всё необходимое для начала работы со списками, есть в разделе <a href="http://devman.org/encyclopedia/python_basics/python_basics_base_types/">&quot;Основные типы данных&quot;</a>.</p>
+<p>Всё необходимое для начала работы со списками, есть в разделе <a href="http://devman.org/encyclopedia/python_basics/python_basics_base_types/">"Основные типы данных"</a>.</p>
 <p>Тут давайте немного поговорим о list comprehension (по-русски они зовутся списковыми выражениями, но я ни разу не слышал,
 чтобы кто-то так говорил).</p>
 <p>Часто бывает надо взять исходный список и сформировать из него новый, применив к каждому элементу исходного
 какое-то преобразование и как-то отфильтровав. Например, так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 values = [1, 2, 3, 4, 5]
 new_values = []
 for value in values:
     if value % 2:
         new_values.append(value ** 2)
-</code></pre>
+</pre></div></div>
 <p>В результате в <code>new_values</code> будут только квадраты чётных чисел из исходного списка.</p>
 <p>Эта операция настолько частая, что для неё есть отдельная конструкция – list comprehension. Выглядит она так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 values = [1, 2, 3, 4, 5]
 new_values = [value ** 2 for value in values if value % 2]
-</code></pre>
+</pre></div></div>
 <p>Это та же конструкция, что и в предыдущем примере, просто записанная очень компактно: посредине тот же цикл,
 слева – что добавлять в новый список, а справа - фильтр. Фильтр может быть необязательным, кстати.</p>
 <h3>Словари</h3>
 <p>Словарь – это отображение одних элементов в другие. Первые называют ключами, вторые – значениями.</p>
-<pre><code>:::python
-user_info = {&amp;#x27;name&amp;#x27;: &amp;#x27;Иван&amp;#x27;, &amp;#x27;level&amp;#x27;: 2}
-print(user_info[&amp;#x27;name&amp;#x27;])  # Иван
-</code></pre>
+<div class="card"><div class="card-body"><pre>
+user_info = {'name': 'Иван', 'level': 2}
+print(user_info['name'])  # Иван
+</pre></div></div>
 <p>Из словаря можно удалять, менять и добавлять в него элементы:</p>
-<pre><code>:::python
-user_info = {&amp;#x27;name&amp;#x27;: &amp;#x27;Иван&amp;#x27;, &amp;#x27;level&amp;#x27;: 2}
-user_info[&amp;#x27;middle_name&amp;#x27;] = &amp;#x27;Иванович&amp;#x27;
-user_info[&amp;#x27;name&amp;#x27;] = &amp;#x27;Грирогий&amp;#x27;
-del user_info[&amp;#x27;level&amp;#x27;]
-print(user_info)  # {&amp;#x27;middle_name&amp;#x27;: &amp;#x27;Иванович&amp;#x27;, &amp;#x27;name&amp;#x27;: &amp;#x27;Грирогий&amp;#x27;}
-</code></pre>
+<div class="card"><div class="card-body"><pre>
+user_info = {'name': 'Иван', 'level': 2}
+user_info['middle_name'] = 'Иванович'
+user_info['name'] = 'Грирогий'
+del user_info['level']
+print(user_info)  # {'middle_name': 'Иванович', 'name': 'Грирогий'}
+</pre></div></div>
 <p>Важный момент про словари: они хранят только отображение одних элементов в других, а порядок элементов не хранят.
 В примере выше <code>middle_name</code> был выведен первым, но на это полагаться нельзя.</p>
 <p>Ещё у словарей есть несколько важных методов: <code>keys</code>, <code>values</code> и <code>items</code>. Первый возвращает список только ключей, 
 второй – список только значений, третий – список пар из ключей и значений. Удобно при итерации по словарю:</p>
-<pre><code>:::python
-user_info = {&amp;#x27;name&amp;#x27;: &amp;#x27;Иван&amp;#x27;, &amp;#x27;level&amp;#x27;: 2}
+<div class="card"><div class="card-body"><pre>
+user_info = {'name': 'Иван', 'level': 2}
 for key, value in user_info.items():
-    print &amp;#x27;%s: %s&amp;#x27; % (key, value)
+    print '%s: %s' % (key, value)
 # name: Иван
 # level: 2
-</code></pre>
+</pre></div></div>
 <h3>Кортежи</h3>
 <p>Кортеж выглядит как список, но не совсем. Это скорее структура из C++.
 Отличаются от списков тем, что его элементы гетерогенные и тем, что он умеет упаковываться и распаковываться.
@@ -152,10 +161,10 @@ for key, value in user_info.items():
 <p>Множество – это математическое множество. В нём все элементы уникальные, можно считать пересечение,
 проверять на вхождение и выполнять другие операции с множествами. </p>
 <p>Один из частых случаев применения множеств – удаление дублей из списка:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 l = [1, 2, 1, 3, 2]
 print(list(set(l)))  # [1, 2, 3]
-</code></pre>
+</pre></div></div>
 
       </div>
     </main>

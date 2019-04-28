@@ -20,7 +20,8 @@
       }
 
       main > .container {
-        padding: 60px 15px 0;
+        padding: 80px 15px 0;
+        width:80%;
       }
 
       .footer {
@@ -32,8 +33,16 @@
         padding-left: 15px;
       }
 
-      code {
-        font-size: 80%;
+      body {
+        font-size: 120%;
+        font:
+      }
+
+      blockquote{
+        padding:10px 20px;
+        margin:0 0 20px;
+        font-size:17.5px;
+        border-left:5px solid #eee
       }
     </style>
     <title>Энциклопедия</title>
@@ -50,7 +59,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/19_site_generator/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/devmanorg/">Github</a>
@@ -71,26 +80,26 @@
 <p>Сейчас мы совсем реактивно пройдёмся по самым основным управляющим конструкциям. Гет реди.</p>
 <h3>if</h3>
 <p>Ну, вы все знаете условный оператор, так ведь?</p>
-<pre><code>:::python
-if age &amp;lt; 18:
-    print(&amp;#x27;Никаких тебе сигарет. Ишь чего удумал!&amp;#x27;)
+<div class="card"><div class="card-body"><pre>
+if age &lt; 18:
+    print('Никаких тебе сигарет. Ишь чего удумал!')
 else:
-    print(&amp;#x27;Вам синий или красный?&amp;#x27;)
-</code></pre>
+    print('Вам синий или красный?')
+</pre></div></div>
 <p>Есть ещё <code>elif</code>, их можно сделать много в одном операторе. Это такой аналог <code>which</code> из других языков.</p>
 <h3>for</h3>
 <p>Цикл. Вместо сишного варианта с init, cond и loop выражениями, тут просто итерация по коллекции:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 for user in users:
     print user
-</code></pre>
+</pre></div></div>
 <p>Иногда надо не пройтись по списку, а выполнить одну и ту же операцию много раз. Тогда хорошо подходит функция
 <a href="https://docs.python.org/3.5/library/functions.html#func-range">range</a>. Она возвращает целые числа в заданном промежутке,
 поэтому в цикле её можно использовать так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 for level_num in range(10):
     user.levelup()  # пользователь получит десять уровней. Читер!
-</code></pre>
+</pre></div></div>
 <p>А вот <code>break</code> и <code>continue</code> делают то же, что в Паскале и Сях. <code>break</code> прерывает выполнение цикла,
 <code>continue</code> завершает текущую итерацию и переходит к следующей.</p>
 <p>Ещё у цикла есть <code>else</code>, но про него почти никто не знает. Как он работает можно посмотреть
@@ -98,45 +107,45 @@ for level_num in range(10):
 <h3>def</h3>
 <p>Начало объявления функции. После него идёт название,
 потом – аргументы функции в скобках, двоеточие и тело функции с отступом:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 def get_square(value):
     return value ** 2
-</code></pre>
+</pre></div></div>
 <p>То, что после <code>return</code> – это возвращаемое значение функции.</p>
 <p>Функцию создали, вот как её теперь использовать:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 print(get_square(2))  # 4
 print(get_square(6))  # 36
-print(get_square(&amp;#x27;ыыы&amp;#x27;))  # всё сломается
-</code></pre>
+print(get_square('ыыы'))  # всё сломается
+</pre></div></div>
 <p>А вот пример посложнее, из исходников Девмана. Получает пользователя по айди в Слаке:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 def _get_user_by_slack_id(slack_user_id):
     user_email = get_slack_email_for_user(slack_user_id)
     return User.objects.filter(email__iexact=user_email).first()
-</code></pre>
+</pre></div></div>
 <p>(вот почему емейл необходим)</p>
 <h3>range</h3>
 <p>Функция очень полезная, поэтому про неё отдельно. <code>range</code> генерирует целые числа в заданном диапазоне. Например:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 range(10)  # 0..0
 range(5, 10)  # 5..9
 range(5, 10, 2)  # [5, 7, 9] (от пяти до девяти с шагом два)
-</code></pre>
+</pre></div></div>
 <p>Фишка этой функции заключается в том, что она не создаёт список со всеми числами.
 Вместо этого он вернёт объект, который будет возвращать элементы как только они нужны, по одному.
 Поэтому код <code>range(9999999999999)</code> не съест всю память.
 Этот хитрый объект (Sequence ABC, но об этом потом) можно превратить в список явно:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 list(range(9999999999999))
-</code></pre>
+</pre></div></div>
 <p>(не советую так делать)</p>
 <h3>pass</h3>
 <p>Блок, который ничего не делает:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 for i in range(20):
     pass  # 20 раз сделать ничего. Очень полезно!
-</code></pre>
+</pre></div></div>
 <p>Часто используется в начальном коде для заданий: в финальной версии вместо <code>pass</code> должен быть настоящий код.</p>
 
       </div>

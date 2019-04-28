@@ -20,7 +20,8 @@
       }
 
       main > .container {
-        padding: 60px 15px 0;
+        padding: 80px 15px 0;
+        width:80%;
       }
 
       .footer {
@@ -32,8 +33,16 @@
         padding-left: 15px;
       }
 
-      code {
-        font-size: 80%;
+      body {
+        font-size: 120%;
+        font:
+      }
+
+      blockquote{
+        padding:10px 20px;
+        margin:0 0 20px;
+        font-size:17.5px;
+        border-left:5px solid #eee
       }
     </style>
     <title>Энциклопедия</title>
@@ -50,7 +59,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/19_site_generator/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/devmanorg/">Github</a>
@@ -77,67 +86,67 @@
 <p>Имя модуля совпадает с именем файла и должно быть нормальным именем переменной в Питоне: например, не содержать
 знаков минуса.</p>
 <p>Предположим, что есть папка <code>3_bars</code>, в ней файл <code>data_loaders.py</code> с таким содержанием:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 import csv
 import json
 
 
 def load_from_json(filepath):
-    with open(filepath, &amp;#x27;r&amp;#x27;) as file_handler:
+    with open(filepath, 'r') as file_handler:
         return json.load(file_handler)
 
 
 def load_from_csv(filepath):
-    with open(filepath, &amp;#x27;r&amp;#x27;) as file_handler:
+    with open(filepath, 'r') as file_handler:
         return list(csv.reader(file_handler))
-</code></pre>
+</pre></div></div>
 <p>А рядом есть файл <code>bars.py</code>, в котором мы хотим загрузить данные из csv. Вот что в нём можно написать:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 from data_loaders import load_from_csv  # импортируем функцию из модуля
 
 
-print(load_from_csv(&amp;#x27;bars.csv&amp;#x27;)
-</code></pre>
+print(load_from_csv('bars.csv')
+</pre></div></div>
 <p>А можно так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 import data_loaders  # импортируем модуль целиком
 
 
-print(data_loaders.load_from_csv(&amp;#x27;bars.csv&amp;#x27;)  # используем функцию с указанием модуля
-</code></pre>
+print(data_loaders.load_from_csv('bars.csv')  # используем функцию с указанием модуля
+</pre></div></div>
 <p>Есть ещё вариант <code>from data_loaders import *</code>, но он вне закона. Забудьте о нём.</p>
 <h3>Запуск модуля как скрипта</h3>
 <p>Когда Питон видит <code>import data_loaders</code>, он находит файл <code>data_loaders.py</code> и выполняет его. Реально выполняет:
 если в нём есть код, он будет выполнен. Даже если это не просто объявления функций, а их вызов. Представим,
 что когда мы писали код в <code>data_loaders.py</code>, мы его дебажили. Например, так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 import json
 
 
 def load_from_json(filepath):
-    with open(filepath, &amp;#x27;r&amp;#x27;) as file_handler:
+    with open(filepath, 'r') as file_handler:
         return json.load(file_handler)
 
 
-print(load_from_json(&amp;#x27;test.json&amp;#x27;))
-</code></pre>
+print(load_from_json('test.json'))
+</pre></div></div>
 <p>Теперь если мы импортируем этот модуль (<code>import data_loaders</code>), девятая строка выполнится, файл загрузится и выведется
 на экран. А ведь в <code>bars.py</code> это не нужно! Можно этот код удалить, но тогда будет неудобно дорабатывать функцию
 <code>load_from_json</code>: при изменении надо будет добавлять отладочный принт, а потом удалять.</p>
 <p>Вот правильный способ это обойти:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 import json
 
 
 def load_from_json(filepath):
-    with open(filepath, &amp;#x27;r&amp;#x27;) as file_handler:
+    with open(filepath, 'r') as file_handler:
         return json.load(file_handler)
 
 
-if __name__ == &amp;#x27;__main__&amp;#x27;:
-    print(load_from_json(&amp;#x27;test.json&amp;#x27;))
-</code></pre>
-<p>Иф на девятой строке значит &quot;выполняй меня только если файл запущен напрямую, а не импортирован&quot;.
+if __name__ == '__main__':
+    print(load_from_json('test.json'))
+</pre></div></div>
+<p>Иф на девятой строке значит "выполняй меня только если файл запущен напрямую, а не импортирован".
 Теперь при запуске <code>python data_loaders.py</code> будет выполняться дебажная загрузка кода, а
 при импорте этого модуля – не будет. То, что надо.</p>
 <p><code>__main__</code> – одна из переменных магических переменных. Их можно узнать по двойным подчёркиваниям по краям.
@@ -147,16 +156,16 @@ if __name__ == &amp;#x27;__main__&amp;#x27;:
 <h3>Подводные камни</h3>
 <p>Главный подводный камень – рекурсивный импорт. Это если мы импортируем <code>data_loaders</code> из <code>bars</code>, а для <code>data_loaders</code>
 нужен <code>bars</code>. Вот так:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 # bars.py
 import data_loaders
 
 # data_loaders.py
 import bars
-</code></pre>
+</pre></div></div>
 <p>Бах! Всё сломается при запуске.</p>
 <p>Иногда бывает ещё веселее: когда импорты замыкаются в трёх и более файлах. Типа того:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 # bars.py
 import data_loaders
 
@@ -165,7 +174,7 @@ import helpers
 
 # helpers.py
 import bars
-</code></pre>
+</pre></div></div>
 <p>Всё сломается так же, как в примере выше, но ещё и заставит поломать голову при починке.</p>
 <p>Чинить такие случаи просто: разбивать код на максимально независимые модули. В примере выше, например,
 файлу <code>helpers.py</code> зачем-то нужен <code>bars.py</code>. Так быть не должно: в <code>helpers.py</code> должны жить
@@ -178,7 +187,7 @@ import bars
 Например, упаковать код в модуль и установить его с помощью pip. Так что тсс, я вам ничего не говорил.</p>
 <p>В памяти все загруженные модули хранятся в <code>sys.modules</code>. Иногда встречаются случаи, когда файла нет, а модуль есть.
 Это не сложно устроить:</p>
-<pre><code>:::python
+<div class="card"><div class="card-body"><pre>
 # mod.py
 import sys
 from types import ModuleType
@@ -187,7 +196,7 @@ from types import ModuleType
 dynamic_module = ModuleType(__name__)
 dynamic_module.x = 5
 
-sys.modules[&amp;#x27;some_weird_module&amp;#x27;] = dynamic_module
+sys.modules['some_weird_module'] = dynamic_module
 
 
 # script.py
@@ -196,7 +205,7 @@ import some_weird_module  # модуль есть, а файла – нет
 
 
 print(some_weird_module.x)  # 5
-</code></pre>
+</pre></div></div>
 <p>Делать так незаконно: это неочевидно, затрудняет отладку и вредит читаемости. Не надо так.</p>
 
       </div>
