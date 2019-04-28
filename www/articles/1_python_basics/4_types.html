@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      main > .container {
+        padding: 60px 15px 0;
+      }
+
+      .footer {
+        background-color: #f5f5f5;
+      }
+
+      .footer > .container {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      code {
+        font-size: 80%;
+      }
+    </style>
+    <title>Энциклопедия</title>
+  </head>
+  <body class="d-flex flex-column h-100">
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
+        <a class="navbar-brand" href="https://devman.org/">devman</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/www/index.html">Энциклопедия<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/devmanorg/">Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Что-то еще</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+        
+        <h1>Типы данных</h1>
+        <h3>Числа</h3>
+<p>В самом Питоне есть целые, вещественные, и комплексные числа. В стандартной библиотеке есть ещё рациональные и
+фиксированной точности.</p>
+<p>У целых чисел нет подводных камней: у них нет ограничения по размеру, поддерживают стандартные арифметические действия
+и всякое такое.</p>
+<p>У вещественных есть подвох: они внутри представлены как тип double в С++. Это значит, что хранятся они как два числа:
+мантисса и экспонента. Это удобно, но иногда из-за ошибок округления и накапливаемых погрешностей происходят ужасные вещи.
+Чтобы знать, что и как может сломаться, надо прочитать
+<a href="https://docs.python.org/3.5/tutorial/floatingpoint.html">статью про ограничение вещественных числах в документации</a>
+(<em>мастрид</em>).</p>
+<p>Частный, но важный случай: деньги нельзя хранить как вещественное число, только как целое или с фиксированной точностью.
+Это кажется очевидным, но многие так делают (некоторые даже в бою). Их всех потом увольняют. Едва ли это совпадение.</p>
+<p><a href="https://docs.python.org/3.5/library/stdtypes.html#numeric-types-int-float-complex">Официальная заметка про численные типы</a>
+короткая и понятная.</p>
+<h3>Строки</h3>
+<p>Со строками в третьем Питоне всё просто: они Юникодные.</p>
+<p>Это значит, что всё сделано очень удобно, но чтобы этим всем удобно пользоваться, надо знать, что такое Юникод, кодировки,
+байты, вот это всё. Об этом можно узнать, например, из <a href="https://www.youtube.com/watch?v=sgHbC6udIqc">классного доклада про Юникод в Питоне</a>.</p>
+<p>Ещё строки можно форматировать, причём несколькими способами. Вот один из них:</p>
+<pre><code>:::python
+name = &amp;#x27;Пётр&amp;#x27;
+height = 1.865
+print(&amp;#x27;Привет, %s! Твой рост – %.2f м.&amp;#x27; % (name, height))
+# Привет, Пётр! Твой рост – 1.86 м.
+</code></pre>
+<p>Заметь, что <code>%s</code> значит &quot;вывести строку как есть&quot;, а <code>%.2f</code> значит &quot;вывести вещественное число 
+с точностью до третьего знака&quot;. На самом деле, есть целый подъязык этого форматирования. Почитай 
+<a href="https://docs.python.org/3.1/library/string.html#format-specification-mini-language">про него в документации</a>
+и <a href="https://pyformat.info/">более подробную статью</a>.</p>
+<p>И главное: никогда не используй сложение строк для форматирования. Это плохо читается, долго работает и занимает
+много места.</p>
+<h3>Списки</h3>
+<p>Всё необходимое для начала работы со списками, есть в разделе <a href="http://devman.org/encyclopedia/python_basics/python_basics_base_types/">&quot;Основные типы данных&quot;</a>.</p>
+<p>Тут давайте немного поговорим о list comprehension (по-русски они зовутся списковыми выражениями, но я ни разу не слышал,
+чтобы кто-то так говорил).</p>
+<p>Часто бывает надо взять исходный список и сформировать из него новый, применив к каждому элементу исходного
+какое-то преобразование и как-то отфильтровав. Например, так:</p>
+<pre><code>:::python
+values = [1, 2, 3, 4, 5]
+new_values = []
+for value in values:
+    if value % 2:
+        new_values.append(value ** 2)
+</code></pre>
+<p>В результате в <code>new_values</code> будут только квадраты чётных чисел из исходного списка.</p>
+<p>Эта операция настолько частая, что для неё есть отдельная конструкция – list comprehension. Выглядит она так:</p>
+<pre><code>:::python
+values = [1, 2, 3, 4, 5]
+new_values = [value ** 2 for value in values if value % 2]
+</code></pre>
+<p>Это та же конструкция, что и в предыдущем примере, просто записанная очень компактно: посредине тот же цикл,
+слева – что добавлять в новый список, а справа - фильтр. Фильтр может быть необязательным, кстати.</p>
+<h3>Словари</h3>
+<p>Словарь – это отображение одних элементов в другие. Первые называют ключами, вторые – значениями.</p>
+<pre><code>:::python
+user_info = {&amp;#x27;name&amp;#x27;: &amp;#x27;Иван&amp;#x27;, &amp;#x27;level&amp;#x27;: 2}
+print(user_info[&amp;#x27;name&amp;#x27;])  # Иван
+</code></pre>
+<p>Из словаря можно удалять, менять и добавлять в него элементы:</p>
+<pre><code>:::python
+user_info = {&amp;#x27;name&amp;#x27;: &amp;#x27;Иван&amp;#x27;, &amp;#x27;level&amp;#x27;: 2}
+user_info[&amp;#x27;middle_name&amp;#x27;] = &amp;#x27;Иванович&amp;#x27;
+user_info[&amp;#x27;name&amp;#x27;] = &amp;#x27;Грирогий&amp;#x27;
+del user_info[&amp;#x27;level&amp;#x27;]
+print(user_info)  # {&amp;#x27;middle_name&amp;#x27;: &amp;#x27;Иванович&amp;#x27;, &amp;#x27;name&amp;#x27;: &amp;#x27;Грирогий&amp;#x27;}
+</code></pre>
+<p>Важный момент про словари: они хранят только отображение одних элементов в других, а порядок элементов не хранят.
+В примере выше <code>middle_name</code> был выведен первым, но на это полагаться нельзя.</p>
+<p>Ещё у словарей есть несколько важных методов: <code>keys</code>, <code>values</code> и <code>items</code>. Первый возвращает список только ключей, 
+второй – список только значений, третий – список пар из ключей и значений. Удобно при итерации по словарю:</p>
+<pre><code>:::python
+user_info = {&amp;#x27;name&amp;#x27;: &amp;#x27;Иван&amp;#x27;, &amp;#x27;level&amp;#x27;: 2}
+for key, value in user_info.items():
+    print &amp;#x27;%s: %s&amp;#x27; % (key, value)
+# name: Иван
+# level: 2
+</code></pre>
+<h3>Кортежи</h3>
+<p>Кортеж выглядит как список, но не совсем. Это скорее структура из C++.
+Отличаются от списков тем, что его элементы гетерогенные и тем, что он умеет упаковываться и распаковываться.
+Подробнее, например, <a href="https://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences">в документации</a>.</p>
+<h3>Множества</h3>
+<p>Множество – это математическое множество. В нём все элементы уникальные, можно считать пересечение,
+проверять на вхождение и выполнять другие операции с множествами. </p>
+<p>Один из частых случаев применения множеств – удаление дублей из списка:</p>
+<pre><code>:::python
+l = [1, 2, 1, 3, 2]
+print(list(set(l)))  # [1, 2, 3]
+</code></pre>
+
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">The code is written for educational purposes. Training course for web-developers - <a href="https://devman.org">DEVMAN.org</a></span>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
